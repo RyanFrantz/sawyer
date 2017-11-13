@@ -2,11 +2,6 @@ require 'sawyer/options'
 require 'sawyer/parser'
 require 'sawyer/tools'
 
-SAWYER_ROOT = '/var/log/sawyer'
-logfile = '/var/log/opscode/opscode-expander/current'
-offset_file = logfile.gsub('/', '_').gsub(/^_/, '')
-offset_path = "#{SAWYER_ROOT}/#{offset_file}.offset"
-
 module Sawyer
   class Runner
     include Sawyer::Options
