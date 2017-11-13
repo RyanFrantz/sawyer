@@ -90,7 +90,8 @@ module Sawyer
       validate_logfile!
       validate_parser!
       parser.parse
-      puts parser.metrics
+      #puts parser.metrics
+      puts parser.publish
     end
   end
 end

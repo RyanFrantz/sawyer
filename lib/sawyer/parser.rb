@@ -1,3 +1,5 @@
+require 'sawyer/publisher'
+
 module Sawyer
   class Parser
 
@@ -45,6 +47,11 @@ module Sawyer
           end
         end
       end
+    end
+
+    def publish
+      p = Sawyer::Publisher.new
+      p.publish(metrics)
     end
   end
 end
