@@ -1,4 +1,5 @@
 require 'sawyer/options'
+require 'sawyer/parser'
 require 'sawyer/tools'
 
 SAWYER_ROOT = '/var/log/sawyer'
@@ -57,7 +58,7 @@ module Sawyer
 
     def parser_class
       parser_name = parser_file.gsub(/\.rb$/, '')
-      @parser_class ||= camelize(parser_name)
+      @parser_class ||= "Sawyer::Parser::#{camelize(parser_name)}"
     end
 
     def load_parser
@@ -68,7 +69,7 @@ module Sawyer
     def parser
       load_parser
       klass = Object.const_get(parser_class)
-      klass.new(logfile = logfile, offset_file = offset_file)
+      @parser ||= klass.new(logfile, offset_file)
     end
 
     def validate_logfile!
