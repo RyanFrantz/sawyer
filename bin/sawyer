@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+sawyer_lib = File.expand_path(File.join(File.dirname(__FILE__), "..", "lib"))
+$:.unshift(sawyer_lib)
+require "sawyer/runner"
+
+Sawyer::Runner.new.run
