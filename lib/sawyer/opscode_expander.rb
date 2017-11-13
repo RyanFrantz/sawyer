@@ -15,22 +15,6 @@ module Sawyer
 	      }
       end
 
-      def parse
-	      metrics = {}
-	      lines = `#{LOGTAIL} -f #{self.logfile} -o #{self.offset_path}`.split("\n")
-	      lines.each do |line|
-	        regexes.each do |re, metric|
-	          if re.match(line)
-	            if metrics.key?(metric)
-	              metrics[metric] += 1
-	            else
-	              metrics[metric] = 1
-	            end
-	          end
-	        end
-	      end
-      end
-	
 	  end
   end
 end

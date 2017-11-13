@@ -2,7 +2,6 @@ require 'sawyer/options'
 require 'sawyer/tools'
 
 SAWYER_ROOT = '/var/log/sawyer'
-LOGTAIL = '/usr/sbin/logtail2'
 logfile = '/var/log/opscode/opscode-expander/current'
 offset_file = logfile.gsub('/', '_').gsub(/^_/, '')
 offset_path = "#{SAWYER_ROOT}/#{offset_file}.offset"
@@ -90,33 +89,7 @@ module Sawyer
       validate_logfile!
       validate_parser!
       parser.parse
+      puts parser.metrics
     end
   end
 end
-
-
-#re_indexed_node = Regexp.new('INFO: indexed node')
-#re_index_fail   = Regexp.new('ERROR: Failed to post to solr')
-#
-#regexes = {
-#  re_indexed_node => 'chef.server.opscode-expander.index.success',
-#  re_index_fail   => 'chef.server.opscode-expander.index.fail'
-#}
-#
-#metrics = {}
-#lines = `#{LOGTAIL} -f #{logfile} -o #{offset_path}`.split("\n")
-#lines.each do |line|
-#  regexes.each do |re, metric|
-#    if re.match(line)
-#      if metrics.key?(metric)
-#        metrics[metric] += 1
-#      else
-#        metrics[metric] = 1
-#      end
-#    end
-#  end
-#end
-#
-#metrics.each do |metric, value|
-#  puts "#{metric} = #{value}"
-#end
