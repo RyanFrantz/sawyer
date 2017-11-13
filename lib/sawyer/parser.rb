@@ -48,10 +48,5 @@ module Sawyer
         end
       end
     end
-
-    def publish
-      p = Sawyer::Publisher.new
-      p.publish(metrics)
-    end
   end
 end

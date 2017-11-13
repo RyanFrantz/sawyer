@@ -45,7 +45,7 @@ module Sawyer
     end
 
     def parser_root
-      @parser_root ||= '/usr/local/sawyer/parsers'
+      @parser_root ||= options[:parser_root]
     end
 
     def parser_file
@@ -61,6 +61,8 @@ module Sawyer
       @parser_class ||= "Sawyer::Parser::#{camelize(parser_name)}"
     end
 
+    # We require parsers external to ourselves as we expect them to be provided
+    # by the operator.
     def load_parser
       require parser_path
     end
@@ -70,6 +72,29 @@ module Sawyer
       load_parser
       klass = Object.const_get(parser_class)
       @parser ||= klass.new(logfile, offset_file)
+    end
+
+    def publisher_name
+      @publisher_name ||= options[:publisher]
+    end
+
+    # We require publishers relative to ourselves as we ship with them.
+    def publisher_path
+      @publisher_path ||= "#{File.dirname(__FILE__)}/publishers/#{publisher_name}.rb"
+    end
+
+    def load_publisher
+      require_relative publisher_path
+    end
+    
+    def publisher_class
+      @publisher_class ||= "Sawyer::Publisher::#{camelize(publisher_name)}"
+    end
+
+    def publisher
+      load_publisher
+      klass = Object.const_get(publisher_class)
+      @publisher ||= klass.new
     end
 
     def validate_logfile!
@@ -90,8 +115,7 @@ module Sawyer
       validate_logfile!
       validate_parser!
       parser.parse
-      #puts parser.metrics
-      puts parser.publish
+      publisher.publish(parser.metrics)
     end
   end
 end
