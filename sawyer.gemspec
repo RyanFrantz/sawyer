@@ -3,7 +3,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'sawyer/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = 'sawyer'
+  gem.name          = 'sawyer-log-parser' # https://github.com/lostisland/sawyer is a thing.
   gem.version       = Sawyer::VERSION
   gem.license       = 'Apache-2.0'
   gem.authors       = ['Ryan Frantz']
