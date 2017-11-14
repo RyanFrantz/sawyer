@@ -81,7 +81,7 @@ module Sawyer
     def load_publisher
       require_relative publisher_path
     end
-    
+
     def publisher_class
       @publisher_class ||= "Sawyer::Publisher::#{camelize(publisher_name)}"
     end

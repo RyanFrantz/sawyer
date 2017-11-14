@@ -2,8 +2,7 @@ require 'sawyer/publisher'
 
 module Sawyer
   class Parser
-
-    LOGTAIL = '/usr/sbin/logtail2'
+    LOGTAIL = '/usr/sbin/logtail2'.freeze
     attr_reader :logfile, :offset_file
     def initialize(logfile, offset_file)
       @logfile = logfile

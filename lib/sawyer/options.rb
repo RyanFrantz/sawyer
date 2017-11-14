@@ -3,7 +3,7 @@ require 'sawyer/version'
 
 module Sawyer
   module Options
-		# Parse command line options and return the choices hash.
+    # Parse command line options and return the choices hash.
     def parse_options
       defaults = {
         parser_root: '/usr/local/sawyer/parsers',
@@ -17,7 +17,7 @@ module Sawyer
           long  '--list-publishers'
           desc  'List all publishers and exit.'
           action do
-            publishers =  Dir.glob(File.dirname(__FILE__) + '/publishers/*')
+            publishers = Dir.glob(File.dirname(__FILE__) + '/publishers/*')
             publishers.sort.each do |publisher|
               puts File.basename(publisher).gsub(/\.rb$/, '')
             end
@@ -25,7 +25,7 @@ module Sawyer
           end
         end
 
-        option :logfile, :required => true do
+        option :logfile, required: true do
           short '-l'
           long  '--log-file=LOGFILE'
           desc  'The path to the log file that will be tailed and parsed. (REQUIRED)'
@@ -44,7 +44,7 @@ module Sawyer
           default defaults[:parser_root]
         end
 
-        option :parser, :required => true do
+        option :parser, required: true do
           short '-p'
           long  '--parser=PARSER'
           desc  'The name of a parser module that will be used to parse the log file. (REQUIRED)'

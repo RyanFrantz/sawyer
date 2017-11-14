@@ -1,0 +1,48 @@
+---
+AllCops:
+  Exclude:
+    - 'Rakefile'
+    - 'test/**/*'
+    - 'spec/**/*'
+    - 'bin/**'
+    - 'vendor/**/*'
+AlignParameters:
+  Enabled: false
+ClassLength:
+  Enabled: false
+CyclomaticComplexity:
+  Enabled: false
+Documentation:
+  Enabled: false
+Encoding:
+  Enabled: false
+LineLength:
+  Enabled: false
+MethodLength:
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Metrics/BlockLength:
+  Enabled: false
+PerceivedComplexity:
+  Enabled: false
+Performance/StringReplacement:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/ConditionalAssignment:
+  Enabled: false
+Style/FileName:
+  Enabled: false
+Style/GuardClause:
+  Enabled: false
+Style/ModuleFunction:
+  Enabled: false
+Style/NumericLiterals:
+  Enabled: false
+Style/PercentLiteralDelimiters:
+  Enabled: false
+Style/SpaceBeforeFirstArg:
+  Enabled: false
+Style/TrivialAccessors:
+  Enabled: false
