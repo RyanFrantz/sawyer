@@ -27,6 +27,14 @@ file's inode matches the reference it has stored in the offset file. If there is
 a mismatch, `sawyer` will begin parsing the updated/rotated log file from the start
 (i.e. offset `0`).
 
+## Installing `sawyer`
+
+Install `sawyer` via `gem`:
+
+`gem install sawyer-log-parser`
+
+This gem is stored in Bloomberg's internal (Artifactory-hosted) Rubygems repo.
+
 ## Using `sawyer`
 
 See the following usage output:
