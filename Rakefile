@@ -4,7 +4,7 @@ require 'rspec/core/rake_task'
 require 'rubocop/rake_task'
 
 desc 'Run rubocop style checks'
-RuboCop::RakeTask.new(:rubocop) do |task|
+RuboCop::RakeTask.new(:style) do |task|
   task.patterns = ['lib/**/*.rb'] # Only library code.
 end
 
@@ -15,7 +15,7 @@ end
 
 # The 'test' task is used by Travis, at least.
 desc 'Run test-related tasks'
-task test: %w(rubocop unit)
+task test: %w(style unit)
 
 # Default
 desc 'Default to test-related tasks'
