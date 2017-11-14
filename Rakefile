@@ -11,7 +11,7 @@ end
 desc 'Run unit tests'
 RSpec::Core::RakeTask.new(:unit) do |task|
   task.pattern = 'spec/*_spec.rb'
-  sh "sudo yum install logcheck" # provides `logtail2`
+  sh "yum install logcheck -y" # provides `logtail2`
 end
 
 # The 'test' task is used by Travis, at least.
