@@ -14,7 +14,7 @@ describe Sawyer::Parser, "#now" do
   end
 
   it "parses lines correctly" do
-    File.delete(@offset_file)
+    File.delete(@offset_file) if File.exist?(@offset_file)
     parser = Sawyer::Parser.new(@logfile, @offset_file)
     info_metric = 'sawyer.info'
     warn_metric = 'sawyer.warn'
