@@ -18,7 +18,12 @@ module Sawyer
     # Returns an empty hash here but should be overridden in the parser subclass
     # that inherits this class.
     def regexes
-      {}
+      @regexes ||= {}
+    end
+
+    # Sets the 'regexes' hash.
+    def regexes=(regex_hash)
+      @regexes = regex_hash
     end
 
     # Should return a hash of metric-name-to-value pairs
