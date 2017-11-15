@@ -55,6 +55,15 @@ Options:
 
 **NOTE**: `--log-file` and `--parser` are required.
 
+An example command would look like the following
+(line breaks added for legibility):
+
+```
+sawyer --log-file /var/log/opscode/opscode-solr/current \
+  --parser opscode_solr \
+  --publisher aggrocrag
+```
+
 ## Parsers
 
 Parsers are expected to reside in `/usr/local/sawyer/parsers` but can be
