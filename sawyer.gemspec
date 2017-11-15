@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
   gem.homepage      = 'https://bbgithub.dev.bloomberg.com/SystemsCoreEngineering/sawyer'
   gem.summary       = gem.description
 
-  gem.required_ruby_version = '>= 2.3'
+  gem.required_ruby_version = '>= 2.0'
 
   gem.files         = Dir['{bin,lib,spec,support,test}/**/*', 'README*', 'CHANGELOG*']
   gem.test_files    = gem.files.grep(%r{^(test|spec)/})
