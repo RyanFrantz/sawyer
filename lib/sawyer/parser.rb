@@ -42,13 +42,14 @@ module Sawyer
       lines = `#{LOGTAIL} -f #{logfile} -o #{offset_file}`.split("\n")
       lines.each do |line|
         regexes.each do |re, metric|
-          if re.match(line)
-            if metrics.key?(metric)
-              metrics[metric] += 1
-            else
-              metrics[metric] = 1
-            end
-          end
+          # Initialize the metric to 0. We're doing this because GUTS
+          # metrics are displayed via Grafana and Grafana refuses to display
+          # graphs for metrics that have never been created in OpenTSDB
+          # (even with the 'null as zero' display option). So, though it may
+          # be a bit wasteful, we'll go ahead and send a 0 if there are no matches.
+          metrics[metric] = 0 unless metrics.key?(metric)
+          # Increment if we've found a match.
+          metrics[metric] += 1 if re.match(line)
         end
       end
     end
