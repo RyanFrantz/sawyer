@@ -6,12 +6,20 @@ module Sawyer
     # Parse command line options and return the choices hash.
     def parse_options
       defaults = {
+        config_file: '/etc/sawyer/sawyer.yml',
         parser_root: '/usr/local/sawyer/parsers',
         publisher:   'stdout'
       }
       Choice.options do
         header ''
         header 'Options:'
+
+        option :config_file do
+          short '-c'
+          long  '--config-file=CONFIG_FILE'
+          desc    "The path to the configuration file. (DEFAULT: #{defaults[:config_file]})"
+          default defaults[:config_file]
+        end
 
         option :list_publishers do
           long  '--list-publishers'

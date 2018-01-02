@@ -4,9 +4,13 @@ module Sawyer
   class Parser
     LOGTAIL = '/usr/sbin/logtail2'.freeze
     attr_reader :logfile, :offset_file
+    attr_accessor :from_config
     def initialize(logfile, offset_file)
       @logfile = logfile
       @offset_file = offset_file
+      # @from_config tells us if we're an auto-generated object based on a
+      # parser defined in the config. Custom classes should NOT set this to true.
+      @from_config = false
     end
 
     # Should return a hash of Regexp-to-string pairs.

@@ -1,0 +1,8 @@
+parsers:
+  example_parser:
+    regexes:
+      - 'foo\w+': 'foo.name'
+      - 'bar\d+': 'bar.count'
+  next_example_parser:
+    regexes:
+      - "\\squux": 'quux.of.the.issue'

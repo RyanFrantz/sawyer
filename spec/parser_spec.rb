@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Sawyer::Parser, "#now" do
+describe Sawyer::Parser, "#new" do
   before(:each) do
     @logfile     = "#{File.dirname(__FILE__)}/fixtures/files/client.log"
     @offset_file = "/tmp/#{File.basename(@logfile)}.offset"
