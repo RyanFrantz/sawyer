@@ -105,16 +105,12 @@ module Sawyer
       klass = Object.const_get(parser_class)
       parser = klass.new(logfile, offset_file)
       parser.from_config = true if parser_defined_in_config
-      # TODO: Add regexes for config-derived parser.
       parser.regexes = add_regexes_from_config if parser_defined_in_config
       parser
     end
 
     # Instantiate and return a parser object.
     def parser
-      #load_parser
-      #klass = Object.const_get(parser_class)
-      #@parser ||= klass.new(logfile, offset_file)
       @parser ||= load_parser
     end
 
