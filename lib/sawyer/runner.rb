@@ -1,4 +1,5 @@
 require 'sawyer/config'
+require 'sawyer/exceptions'
 require 'sawyer/options'
 require 'sawyer/parser'
 require 'sawyer/tools'
@@ -139,8 +140,8 @@ module Sawyer
 
     def validate_logfile!
       unless File.exist?(logfile)
-        puts "Unable to locate log file '#{logfile}'!"
-        exit 1
+        error = "Unable to locate log file '#{logfile}'!"
+        raise Sawyer::LogfileNotFound.new(error)
       end
     end
 
@@ -149,8 +150,7 @@ module Sawyer
         error = "Unable to locate parser '#{parser_name}' either as a class " \
           "at '#{parser_path}' or as a definition in the config " \
           "('#{options[:config_file]}')!"
-        puts error
-        exit 1
+        raise Sawyer::ParserNotFound.new(error)
       end
     end
 
