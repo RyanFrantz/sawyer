@@ -16,9 +16,10 @@ describe 'An example parser' do
 
   context 'defined via the config' do
     it "instantiates a Sawyer::Parser::ExampleParser object" do
+      puts runner.inspect
       expect(runner.parser).to be_an_instance_of(Sawyer::Parser::ExampleParser)
-      expect(runner.parser.logfile).to equal(@logfile)
-      expect(runner.parser.offset_file).to equal(@offset_file)
+      expect(runner.parser.logfile).to eq(@logfile)
+      expect(runner.parser.offset_file).to eq(@offset_file)
     end
   end
 
