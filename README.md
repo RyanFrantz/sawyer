@@ -75,9 +75,9 @@ for available parsers.
 
 For convenience, `sawyer` supports parsers defined in a YAML configuration file
 (defaults to `/etc/sawyer/sawyer.yml`). Parsers are defined under the `parsers`
-key, given a unique name (passed to `sawyer` via the `-p` option), and include
-one or more regex-to-metric name items under the 'regexes' list. See below for
-an example:
+key, given a unique name (passed to `sawyer` via the `-p|--parser` option),
+and include one or more regex-to-metric name items under the `regexes` list.
+See below for an example:
 
 ```yaml
 parsers:
