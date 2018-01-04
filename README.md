@@ -40,16 +40,15 @@ This gem is stored in Bloomberg's internal (Artifactory-hosted) Rubygems repo.
 See the following usage output:
 
 ```sh
-Usage: sawyer [-loPpv]
-
-Options:
-        --list-publishers            List all publishers and exit.
-    -l, --log-file=LOGFILE           The path to the log file that will be tailed and parsed. (REQUIRED)
-    -o, --offset-file=OFFSET_FILE    An optional path to the offset file that will contain the inode and byte offset used by logtail2.
-    -P, --parser-root=PARSER_ROOT    The directory where parsers may be found. (DEFAULT: /usr/local/sawyer/parsers)
-    -p, --parser=PARSER              The name of a parser module that will be used to parse the log file. (REQUIRED)
-        --publisher=PUBLISHER        The name of the publisher that will emit metrics (DEFAULT: stdout)
-                                     See --list-publishers for a list of publishers.
+Usage: sawyer [options]
+    -c, --config-file CONFIG_FILE    The path to the configuration file. (DEFAULT: /etc/sawyer/sawyer.yml)
+    -h, --help                       Prints this help message
+    -L, --list-publishers            List all publishers and exit.
+    -l, --log-file LOGFILE           The path to the log file that will be tailed and parsed. (REQUIRED)
+    -o, --offset-file OFFSET_FILE    An optional path to the offset file that will contain the inode and byte offset used by logtail2.
+    -P, --publisher PUBLISHER        The name of the publisher that will emit metrics (DEFAULT: stdout) See --list-publishers for a list of publishers.
+    -p, --parser PARSER              The name of a parser module that will be used to parse the log file. (REQUIRED)
+    -R, --parser-root PARSER_ROOT    The directory where parsers may be found. (DEFAULT: /usr/local/sawyer/parsers)
     -v, --version                    Show version and exit
 ```
 
@@ -71,6 +70,25 @@ found in any directory (specify `--parser-root` to override the default).
 
 See [sawyer_parsers](https://bbgithub.dev.bloomberg.com/SystemsCoreEngineering/sawyer_parsers)
 for available parsers.
+
+### Configuration-derived Parsers
+
+For convenience, `sawyer` supports parsers defined in a YAML configuration file
+(defaults to `/etc/sawyer/sawyer.yml`). Parsers are defined under the `parsers`
+key, given a unique name (passed to `sawyer` via the `-p` option), and include
+one or more regex-to-metric name items under the 'regexes' list. See below for
+an example:
+
+```yaml
+parsers:
+  example_parser:
+    regexes:
+      - 'foo\w+': 'foo.name'
+      - 'bar\d+': 'bar.count'
+  next_example_parser:
+    regexes:
+      - "\\squux": 'quux.of.the.issue'
+```
 
 ## Publishers
 
