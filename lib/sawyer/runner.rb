@@ -61,7 +61,7 @@ module Sawyer
     # Test if the parser is defined in the config.
     # Returns true or false.
     def parser_defined_in_config
-      config['parsers'] and config['parsers'].keys.include?(parser_name)
+      config['parsers'] && config['parsers'].keys.include?(parser_name)
     end
 
     # Generates a hash of regex-to-metric name that will be assigned to a
@@ -72,7 +72,14 @@ module Sawyer
         config['parsers'][parser_name]['regexes'].each do |rehash|
           rehash.each do |pattern, metric|
             re = Regexp.new(pattern)
-            regexes[re] = metric
+            if metric.is_a?(Hash)
+              regexes[re] = {}
+              metric.each do |k, v|
+                regexes[re][k] = v
+              end
+            else
+              regexes[re] = metric
+            end
           end
         end
       end
@@ -141,16 +148,16 @@ module Sawyer
     def validate_logfile!
       unless File.exist?(logfile)
         error = "Unable to locate log file '#{logfile}'!"
-        raise Sawyer::LogfileNotFound.new(error)
+        raise Sawyer::LogfileNotFound, error
       end
     end
 
     def validate_parser!
-      unless (File.exist?(parser_path) or parser_defined_in_config)
+      unless (File.exist?(parser_path) || parser_defined_in_config) # rubocop:disable Style/ParenthesesAroundCondition
         error = "Unable to locate parser '#{parser_name}' either as a class " \
           "at '#{parser_path}' or as a definition in the config " \
           "('#{options[:config_file]}')!"
-        raise Sawyer::ParserNotFound.new(error)
+        raise Sawyer::ParserNotFound, error
       end
     end
 

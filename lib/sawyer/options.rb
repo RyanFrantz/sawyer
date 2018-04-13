@@ -22,8 +22,11 @@ module Sawyer
       }
 
       oparser = OptionParser.new do |opts|
-        #opts.banner = opts.banner + "..."
+        # opts.banner = opts.banner + "..."
 
+        # rubocop:disable Style/MultilineMethodCallBraceLayout
+        # rubocop:disable Style/IndentationWidth
+        # rubocop:disable Style/BlockDelimiters
         opts.on('-c',
                 '--config-file CONFIG_FILE',
                 'The path to the configuration file.' \
@@ -92,7 +95,6 @@ module Sawyer
                   puts "sawyer v#{Sawyer::VERSION}"
                   exit
         }
-
       end
 
       begin

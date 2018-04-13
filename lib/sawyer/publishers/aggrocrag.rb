@@ -7,7 +7,7 @@ module Sawyer
       # This is a very limited implementation of a library similar to that found
       # at https://bbgithub.dev.bloomberg.com/IPMonitoring/python-gutsapi
       # and https://bbgithub.dev.bloomberg.com/cchandle/ruby-gutsapi.
-      def send_metric(name = '', value = '', type = 'c', sample_rate = '1.0', tags = {})
+      def send_metric(name: '', value: '', type: 'c', sample_rate: '1.0', tags: {})
         require 'socket'
         msg = ['bb']
         msg << "#{name}:#{value}"
@@ -27,7 +27,18 @@ module Sawyer
 
       def publish(metrics)
         metrics.each do |name, value|
-          send_metric(name, value)
+          if value.is_a?(Hash)
+            # The metric has custom arguments. Use them.
+            args = { name: name }
+            value.each do |k, v|
+              # TODO: Validate options and their values for correctness.
+              args[k] = v
+            end
+            send_metric(args)
+          else
+            # Assume a simple counter type metric and let the defaults ride.
+            send_metric(name: name, value: value)
+          end
         end
       end
     end
