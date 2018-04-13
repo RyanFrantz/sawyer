@@ -88,7 +88,30 @@ parsers:
   next_example_parser:
     regexes:
       - "\\squux": 'quux.of.the.issue'
+  example_with_metric_type:
+    regexes:
+      - '^wu':
+         name: 'bond.issue'
+         type: 'c'
+      - 'tang$':
+         name: 'financial.instrument'
+         type: 'gauge'
+      - 'cream':
+         name: 'rules.it.all'
+         type: 'c'
+         sample_rate: '0.5'
 ```
+
+#### Advanced Parser Configuration
+
+By default, `sawyer` assumes a parser collects events to emit as a counter with
+a sample rate of '1.0'. If this does not fit your needs, you can modify the
+metric type by defining its `type` value in the configuration, as well as
+providing additional information related to that metric type. See the
+`example_with_metric_type` example parser configuration above.
+
+**NOTE**: In the case that an advanced configuration is required, the `name`
+field is **required**.
 
 ## Publishers
 

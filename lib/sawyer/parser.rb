@@ -87,16 +87,16 @@ module Sawyer
               #   ...
               #   example_with_metric_type:
               #     regexes:
-              #       '^wu':
-              #         name: 'bond.issue'
-              #         type: 'counter'
-              #       'tang$':
-              #         name: 'financial.instrument'
-              #         type: 'gauge'
-              #       'cream':
-              #         name: 'rules.it.all'
-              #         type: 'c'
-              #         sample_rate: '0.5'
+              #       - '^wu':
+              #          name: 'bond.issue'
+              #          type: 'c'
+              #       - 'tang$':
+              #          name: 'financial.instrument'
+              #          type: 'gauge'
+              #       - 'cream':
+              #          name: 'rules.it.all'
+              #          type: 'c'
+              #          sample_rate: '0.5'
               name = metric['name']
               if metrics.key?(name)
                 metrics[name]['value'] += 1

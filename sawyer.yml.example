@@ -10,7 +10,7 @@ parsers:
     regexes:
       - '^wu':
          name: 'bond.issue'
-         type: 'counter'
+         type: 'c'
       - 'tang$':
          name: 'financial.instrument'
          type: 'gauge'
