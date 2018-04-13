@@ -33,16 +33,16 @@ module Sawyer
     #       - "\\squux": 'quux.of.the.issue'
     #   example_with_metric_type:
     #     regexes:
-    #       '^wu':
-    #         name: 'bond.issue'
-    #         type: 'counter'
-    #       'tang$':
-    #         name: 'financial.instrument'
-    #         type: 'gauge'
-    #       'cream':
-    #         name: 'rules.it.all'
-    #         type: 'c'
-    #         sample_rate: '0.5'
+    #       - '^wu':
+    #          name: 'bond.issue'
+    #          type: 'c'
+    #       - 'tang$':
+    #          name: 'financial.instrument'
+    #          type: 'gauge'
+    #       - 'cream':
+    #          name: 'rules.it.all'
+    #          type: 'c'
+    #          sample_rate: '0.5'
     # Returns an empty hash here but should be overridden in the parser subclass
     # that inherits this class.
     def regexes
