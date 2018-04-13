@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.0.6] - 2018-04-13
+- Adds support for defining metric type in a parser.
+
 ## [0.0.5] - 2018-01-08
 - Gives operators the ability to define parsers via YAML config.
 
