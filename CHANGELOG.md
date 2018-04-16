@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.0.7] - 2018-04-16
+- Extends publisher class to include `#sanitized_name` method so we can support
+pipe-delimited strings used as keys in the `metrics` hash.
+- Keys are typically dotted-type metric names but because we support defining
+tags for metrics, we might end up with two metrics (same name, different tags)
+colliding with such a limited name space. In these cases, we build up a unique
+string for the key that contains the metric name and additional information such
+as type and defined tags, all delimited by pipe.
+
 ## [0.0.6] - 2018-04-13
 - Adds support for defining metric type in a parser.
 

@@ -29,7 +29,7 @@ module Sawyer
         metrics.each do |name, value|
           if value.is_a?(Hash)
             # The metric has custom arguments. Use them.
-            args = { name: name }
+            args = { name: sanitized_name(name) }
             value.each do |k, v|
               # TODO: Validate options and their values for correctness.
               args[k] = v
@@ -37,7 +37,7 @@ module Sawyer
             send_metric(args)
           else
             # Assume a simple counter type metric and let the defaults ride.
-            send_metric(name: name, value: value)
+            send_metric(name: sanitized_name(name), value: value)
           end
         end
       end
