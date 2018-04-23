@@ -32,7 +32,7 @@ module Sawyer
             args = { name: sanitized_name(name) }
             value.each do |k, v|
               # TODO: Validate options and their values for correctness.
-              args[k] = v
+              args[k.to_sym] = v
             end
             send_metric(args)
           else
